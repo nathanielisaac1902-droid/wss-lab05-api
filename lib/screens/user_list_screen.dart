@@ -3,9 +3,11 @@ import '../models/user_model.dart';
 import '../services/api_service.dart';
 import '../widgets/user_tile.dart';
 import '../utils/app_colors.dart';
+import 'user_detail_screen.dart';
+import 'create_post_screen.dart';
 
 class UserListScreen extends StatefulWidget {
-  const UserListScreen({Key? key}) : super(key: key);
+  const UserListScreen({super.key});
 
   @override
   State<UserListScreen> createState() => _UserListScreenState();
@@ -90,7 +92,7 @@ class _UserListScreenState extends State<UserListScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.error_outline, size: 48, color: AppColors.danger),
+                      const Icon(Icons.error_outline, size: 48, color: Colors.red),
                       const SizedBox(height: 16),
                       Text(
                         'Error: ${snapshot.error}',
@@ -123,7 +125,12 @@ class _UserListScreenState extends State<UserListScreen> {
                 return UserTile(
                   user: user,
                   onTap: () {
-                    // Tap action for user detail or posts view
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserDetailScreen(user: user),
+                      ),
+                    );
                   },
                 );
               },
@@ -135,7 +142,12 @@ class _UserListScreenState extends State<UserListScreen> {
         backgroundColor: AppColors.accent,
         foregroundColor: Colors.white,
         onPressed: () {
-          // Action for creating posts
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CreatePostScreen(userId: 1),
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),

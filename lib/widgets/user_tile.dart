@@ -5,7 +5,7 @@ class UserTile extends StatelessWidget {
   final UserModel user;
   final VoidCallback onTap;
 
-  const UserTile({Key? key, required this.user, required this.onTap}) : super(key: key);
+  const UserTile({super.key, required this.user, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
